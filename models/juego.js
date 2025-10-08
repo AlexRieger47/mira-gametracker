@@ -7,6 +7,7 @@ const JuegoSchema = new mongoose.Schema({
       trim: true,
       maxlength: [100, 'El título del juego no puede exceder los 100 caracteres']
     },
+    // Género del juego - Recomendado hacerlo mejor en el FrontEnd - Dropdown
     genero: {
       type: String,
       required: [true, 'El juego debe tener un género'],

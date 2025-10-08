@@ -22,8 +22,13 @@ app.use(cors({
 app.use(express.json());
 
 // Conexión a MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || '[REDACTED]'; // URL removida públicamente por motivos de Seguridad y Privacidad. 
-mongoose.connect(MONGODB_URI)
+const MONGODB_URI = process.env.MONGODB_URI || '[REDACTED]'; // URL removida públicamente por motivos de Seguridad y Privacidad.
+mongoose.connect(MONGODB_URI, {
+  serverSelectionTimeoutMS: 15000, // Aumentar el timeout a 15 segundos
+  socketTimeoutMS: 45000, // Aumentar el timeout del socket a 45 segundos
+  connectTimeoutMS: 15000, // Aumentar el timeout de conexión a 15 segundos
+  maxPoolSize: 10 // Limitar el número máximo de conexiones en el pool
+})
 .then(() => console.log('✅ Conectado a MongoDB - Base de Datos de GameTracker'))
 .catch((err) => console.error('❌ Error al conectar a MongoDB:', err));
 
@@ -65,8 +70,8 @@ app.use((req, res) => {
 
 // Iniciar Servidor
 app.listen(PORT, () => {
-  console.log("🚀 Servidor corriendo en http://localhost:${PORT}");
-  console.log("📚 API disponible en: http://localhost:${PORT}/api");
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`📚 API disponible en: http://localhost:${PORT}/api`);
 });
 
 module.exports = app;

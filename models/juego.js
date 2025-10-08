@@ -35,11 +35,17 @@ const JuegoSchema = new mongoose.Schema({
     imagenPortada: {
       type: String,
       default: 'https://via.placeholder.com/150',
-      validate: function(v) {
-        return /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(v) || v === 'https://via.placeholder.com/150';
-        // Validar que la URL sea segura y su formato sea válido
-      },
-      message: 'La URL de la imagen de portada no es válida. Asegúrate de que sea segura y tenga un formato válido (jpg, jpeg, png, gif, webp).'
+      validate: {
+        validator: function(v) {
+          // Eliminar espacios en blanco y comillas
+          const cleanUrl = v.trim().replace(/['"]+/g, '');
+          // Permitir URLs de placeholder.com y URLs de imágenes comunes
+          return /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(cleanUrl) || 
+                 /^https?:\/\/via\.placeholder\.com\//.test(cleanUrl) ||
+                 cleanUrl === 'https://via.placeholder.com/150';
+        },
+        message: 'La URL de la imagen de portada no es válida. Asegúrate de que sea segura y tenga un formato válido (jpg, jpeg, png, gif, webp) o una URL de placeholder.'
+      }
     },
     descripcion: {
       type: String,

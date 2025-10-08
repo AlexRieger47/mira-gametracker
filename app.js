@@ -22,7 +22,7 @@ app.use(cors({
 app.use(express.json());
 
 // Conexión a MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://alexrieger147_db_user:dwRdzz1dbWkSrr8M@cluster0.jgqcs9x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI || '[REDACTED]'; // URL removida públicamente por motivos de Seguridad y Privacidad. 
 mongoose.connect(MONGODB_URI)
 .then(() => console.log('✅ Conectado a MongoDB - Base de Datos de GameTracker'))
 .catch((err) => console.error('❌ Error al conectar a MongoDB:', err));

@@ -65,8 +65,8 @@ app.use((req, res) => {
 
 // Iniciar Servidor
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-  console.log(`📚 API disponible en: http://localhost:${PORT}/api`);
+  console.log("🚀 Servidor corriendo en http://localhost:${PORT}");
+  console.log("📚 API disponible en: http://localhost:${PORT}/api");
 });
 
 module.exports = app;

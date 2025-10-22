@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
-  FaGamepad,
   FaHome,
   FaPlus,
   FaStar,
@@ -11,10 +10,11 @@ import {
   FaSun,
   FaMoon
 } from 'react-icons/fa'
-import './Navbar.css'
+import miraLogo from '/iconmiraki.svg'
+import './NavBar.css'
 import { useTheme } from '../../context/ThemeContext'
 
-const Navbar = () => {
+const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
   const { theme, toggleTheme } = useTheme()
@@ -66,7 +66,7 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo y Título */}
         <Link to="/" className="navbar-brand" onClick={closeMenu}>
-          <FaGamepad className="navbar-logo" />
+          <img src={miraLogo} alt="Mira GameTracker" className="navbar-logo" width={50} height={50} />
           <span className="navbar-title">Mira GameTracker</span>
         </Link>
 
@@ -140,4 +140,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NavBar

@@ -6,9 +6,9 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(130deg, var(--primary-600) 0%, var(--primary-700) 100%);
+  background: var(--navbar-gradient);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--navbar-border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -41,7 +41,7 @@
 
 .navbar-logo {
   font-size: var(--font-size-xl);
-  color: var(--accent-400);
+  color: var(--accent-logo);
 }
 
 .navbar-title {
@@ -130,7 +130,7 @@
   right: -100%;
   width: 300px;
   height: calc(100vh - 70px);
-  background: linear-gradient(180deg, var(--primary-700) 0%, var(--primary-800) 100%);
+  background: var(--navbar-gradient-vertical);
   backdrop-filter: blur(20px);
   transition: right 0.3s ease-in-out;
   z-index: 999;

@@ -1,10 +1,12 @@
+import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import miraLogo from '/iconmiraki.svg'
 import { Toaster } from 'react-hot-toast'
 import { GameProvider } from './context/GameContext'
 import { ThemeProvider } from './context/ThemeContext'
-import Navbar from './components/layout/Navbar'
+import NavBar from './components/layout/NavBar'
+import BibliotecaJuegos from './components/games/BibliotecaJuegos'
+import Footer from './components/layout/Footer'
 import './App.css'
 
 function App() {
@@ -35,7 +37,14 @@ function App() {
       <GameProvider>
         <div className="app">
           <Toaster position="top-right" />
-          <Navbar />
+          <NavBar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<BibliotecaJuegos />} />
+              <Route path="/biblioteca" element={<BibliotecaJuegos />} />
+            </Routes>
+          </main>
+          <Footer />
         </div>
       </GameProvider>
     </>

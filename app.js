@@ -40,7 +40,7 @@ app.get('/api', (req, res) => {
     endpoints: {
       juegos: '/api/juegos',
       reseñas: '/api/resenas',
-      moby: '/api/moby'
+      igdb: '/api/igdb'
     }
   });
 });
@@ -48,11 +48,11 @@ app.get('/api', (req, res) => {
 // Importar y usar rutas
 const juegosRoutes = require('./routes/juegos.routes');
 const reseñasRoutes = require('./routes/reseñas.routes');
-const mobyRoutes = require('./routes/moby.routes');
+const igdbRoutes = require('./routes/igdb.routes');
 
 app.use('/api/juegos', juegosRoutes);
 app.use('/api/resenas', reseñasRoutes);
-app.use('/api/moby', mobyRoutes);
+app.use('/api/igdb', igdbRoutes);
 
 // Middleware de manejo de errores
 app.use((err, req, res, next) => {

@@ -15,7 +15,7 @@ import {
   FaCheckCircle
 } from 'react-icons/fa'
 import { toast } from 'react-hot-toast'
-import { searchMobyGames, getMobyGame } from '../../services/mobyService'
+import { searchIGDB, getIGDBGame } from '../../services/igdbService'
 import './FormularioJuego.css'
 
 const FormularioJuego = () => {
@@ -116,7 +116,7 @@ const FormularioJuego = () => {
     }
   }, [watchImageUrl])
 
-  // Autocompletado de título con MobyGames (debounced)
+  // Autocompletado de título con IGDB (debounced)
   useEffect(() => {
     const q = (watchTitle || '').trim()
     if (!q || q.length < 2) {
@@ -127,7 +127,7 @@ const FormularioJuego = () => {
     setIsSearching(true)
     const t = setTimeout(async () => {
       try {
-        const res = await searchMobyGames(q, 8)
+        const res = await searchIGDB(q, 8)
         setSuggestions(res.suggestions || [])
         setShowSuggestions(Boolean(res.suggestions && res.suggestions.length))
       } catch (e) {
@@ -144,10 +144,7 @@ const FormularioJuego = () => {
   const handlePickSuggestion = async (sugg) => {
     try {
       setIsSearching(true)
-      const chosenPlatform = Array.isArray(sugg.platforms) && sugg.platforms.length > 0
-        ? sugg.platforms[0]
-        : null
-      const details = await getMobyGame(sugg.id, chosenPlatform?.id)
+      const details = await getIGDBGame(sugg.id)
 
       // Ajustar opciones extra si no existen
       const generoTarget = details.genero || ''
@@ -170,9 +167,9 @@ const FormularioJuego = () => {
 
       if (details.imagenPortada) setImagePreview(details.imagenPortada)
 
-      toast.success('Datos importados desde MobyGames')
+      toast.success('Datos importados desde IGDB')
     } catch (error) {
-      toast.error('No se pudieron importar los datos desde MobyGames')
+      toast.error('No se pudieron importar los datos desde IGDB')
     } finally {
       setShowSuggestions(false)
       setIsSearching(false)
@@ -271,22 +268,22 @@ const FormularioJuego = () => {
                 className={errors.titulo ? 'error' : ''}
                 placeholder="Ej: The Legend of Zelda: Breath of the Wild"
               />
-              {/* Dropdown de sugerencias de MobyGames */}
+              {/* Dropdown de sugerencias de IGDB */}
               {showSuggestions && (
-                <div className="moby-suggestions">
+                <div className="igdb-suggestions">
                   {suggestions.map((s) => (
                     <button
                       key={`${s.id}-${s.title}`}
                       type="button"
                       className="suggestion-item"
                       onClick={() => handlePickSuggestion(s)}
-                      title={`Importar datos de \"${s.title}\"`}
+                      title={`Importar datos de \"${s.title}\" (IGDB)`}
                     >
                       <span className="suggestion-title">{s.title}</span>
-                      {s.year && <span className="suggestion-year">{s.year}</span>}
+                      {s.releaseYear && <span className="suggestion-year">{s.releaseYear}</span>}
                       {Array.isArray(s.platforms) && s.platforms.length > 0 && (
                         <span className="suggestion-platforms">
-                          {s.platforms.slice(0, 2).map(p => p.name).join(' · ')}
+                          {s.platforms.slice(0, 2).map(p => p).join(' · ')}
                           {s.platforms.length > 2 ? ' · …' : ''}
                         </span>
                       )}

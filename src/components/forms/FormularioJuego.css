@@ -80,15 +80,15 @@
   grid-column: 1 / -1;
 }
 
-/* Autocompletar de MobyGames */
-.moby-suggestions {
+/* Autocomplete IGDB */
+.igdb-suggestions {
   position: relative;
   margin-top: var(--spacing-sm);
   display: grid;
   gap: 0.375rem;
 }
 
-.moby-suggestions .suggestion-item {
+.igdb-suggestions .suggestion-item {
   display: grid;
   grid-template-columns: auto 60px 1fr;
   align-items: center;
@@ -103,7 +103,7 @@
   transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.moby-suggestions .suggestion-item:hover {
+.igdb-suggestions .suggestion-item:hover {
   background: var(--surface-1, #f9fafb);
   transform: translateY(-1px);
   box-shadow: var(--shadow-glass-sm, var(--shadow-sm));

@@ -61,6 +61,12 @@
   --text-secondary: #374151;
   --text-muted: #6b7280;
   --border-color: rgba(17, 24, 39, 0.12);
+  --text-base: var(--text-primary);
+  --border-subtle: rgba(17, 24, 39, 0.10);
+  --shadow-glass-sm: 0 6px 16px rgba(31, 38, 135, 0.12);
+  --radius-full: 9999px;
+  --success-100: #d1fae5;
+  --success-700: #047857;
 
   /* Enlaces */
   --link: var(--primary-600);

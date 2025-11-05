@@ -6,6 +6,7 @@ import { GameProvider } from './context/GameContext'
 import { ThemeProvider } from './context/ThemeContext'
 import NavBar from './components/layout/NavBar'
 import BibliotecaJuegos from './components/games/BibliotecaJuegos'
+import FormularioJuego from './components/forms/FormularioJuego'
 import Footer from './components/layout/Footer'
 import './App.css'
 
@@ -42,6 +43,8 @@ function App() {
             <Routes>
               <Route path="/" element={<BibliotecaJuegos />} />
               <Route path="/biblioteca" element={<BibliotecaJuegos />} />
+              <Route path="/agregar-juego" element={<FormularioJuego />} />
+              <Route path="/editar-juego/:id" element={<FormularioJuego />} />
             </Routes>
           </main>
           <Footer />

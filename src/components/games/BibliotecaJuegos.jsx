@@ -13,7 +13,7 @@ import {
   FaCheckCircle,
   FaClock
 } from 'react-icons/fa'
-import miraLogo from '../../../src/iconmiraki.svg'
+import { FaFaceFrown } from 'react-icons/fa6'
 import './BibliotecaJuegos.css'
 
 const BibliotecaJuegos = () => {
@@ -104,7 +104,7 @@ const BibliotecaJuegos = () => {
   if (error) {
     return (
       <div className="biblioteca-error">
-        <img src={miraLogo} alt="Mira GameTracker" className="error-logo" />
+        <FaFaceFrown className="error-logo" />
         <p>Error al cargar tu biblioteca. Por favor, intenta de nuevo.</p>
         <p>{error}</p>
         <button onClick={cargarJuegos} className="btn btn-primary">

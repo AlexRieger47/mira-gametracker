@@ -122,7 +122,7 @@
 }
 
 .heart-icon {
-  color: var(--status-error);
+  color: var(--error);
   animation: heartbeat 2s ease-in-out infinite;
 }
 

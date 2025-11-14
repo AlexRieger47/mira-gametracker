@@ -130,7 +130,7 @@
 }
 
 .stat-icon.completed {
-  color: var(--success-500);
+  color: var(--success-700);
   background: var(--status-success-bg);
 }
 

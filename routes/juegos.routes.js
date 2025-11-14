@@ -159,31 +159,32 @@ router.put('/:id', async (req, res) => {
 // REMOVER JUEGO DE LA BIBLIOTECA (DELETE /api/juegos/:id)
 router.delete('/:id', async (req, res) => {
   try {
-    const juegoEliminado = await Juego.findById(req.params.id);
-    if (!juegoEliminado) {
+    const juego = await Juego.findById(req.params.id)
+    if (!juego) {
       return res.status(404).json({
         success: false,
         message: 'Juego no encontrado',
-      });
+      })
     }
-    //Eliminar adicionalmente las reseñas asociadas
-    await Reseña.deleteMany({ juego: juegoEliminado._id });
-    //Eliminar el juego
-    await Juego.findByIdAndRemove(req.params.id);
+
+    // Eliminar reseñas asociadas al juego (campo correcto: juegoId)
+    await Reseña.deleteMany({ juegoId: juego._id })
+
+    // Eliminar el juego (Mongoose v7/v8)
+    await Juego.findByIdAndDelete(req.params.id)
 
     res.json({
       success: true,
       message: 'Juego y reseñas eliminados exitosamente',
-    });
-    
+    })
   } catch (error) {
     res.status(500).json({
       success: false,
       message: 'Error al eliminar el juego',
       error: error.message,
-    });
+    })
   }
-});
+})
 
 // OBTENER ESTADÍSTICAS DE LA BIBLIOTECA (GET /api/juegos/estadisticas/resumen)
 router.get('/estadisticas/resumen', async (req, res) => {

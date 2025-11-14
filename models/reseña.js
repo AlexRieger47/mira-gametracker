@@ -59,7 +59,7 @@ const reseñaSchema = new mongoose.Schema({
 });
 
 // Obtener información del juego a partir de la reseña
-reseñaSchema.virtual('juego', {
+reseñaSchema.virtual('game', {
   ref: 'Juego',
   localField: 'juegoId',
   foreignField: '_id',

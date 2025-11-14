@@ -2,9 +2,11 @@
 
 .footer {
   background: var(--navbar-gradient);
-  color: #f3f4f6;
+  color: var(--text-primary);
   margin-top: auto;
-  border-top: var(--navbar-border);
+  border-top: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
 }
 
 .footer-container {
@@ -33,7 +35,7 @@
   gap: var(--spacing-sm);
   font-size: var(--font-size-md);
   font-weight: 700;
-  color: var(--primary-300);
+  color: var(--gradient-primary);
   margin-bottom: var(--spacing-sm);
 }
 
@@ -43,7 +45,7 @@
 }
 
 .footer-description {
-  color: #d1d5db;
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 300px;
   font-size: var(--font-size-sm);
@@ -57,7 +59,7 @@
 }
 
 .footer-section h4 {
-  color: var(--primary-300);
+  color: var(--text-primary);
   font-size: var(--font-size-base);
   font-weight: 600;
   margin-bottom: var(--spacing-md);
@@ -71,7 +73,7 @@
   bottom: -4px;
   width: 30px;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent-400), var(--accent-200));
+  background: var(--gradient-primary);
   border-radius: 1px;
 }
 
@@ -86,7 +88,7 @@
 }
 
 .footer-section a, .footer-section li {
-  color: #d1d5db;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: var(--font-size-sm);
   transition: var(--transition);
@@ -95,13 +97,13 @@
 }
 
 .footer-section a:hover {
-  color: var(--primary-100);
+  color: #fff;
   transform: translateX(5px);
 }
 
 .footer-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gray-300) , transparent);
+  background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
   margin: var(--spacing-xl) 0;
 }
 
@@ -118,7 +120,7 @@
   align-items: center;
   gap: var(--spacing-sm);
   font-size: var(--font-size-sm);
-  color: var(--primary-400);
+  color: var(--text-secondary);
 }
 
 .heart-icon {
@@ -142,19 +144,21 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: #1f2937;
-  color: #9ca3af; /* Color consistente entre temas */
+  background: var(--glass-gradient);
+  color: var(--text-secondary);
   border-radius: var(--radius-full);
   transition: var(--transition);
-  border: 1px solid #374151;
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
 }
 
 .footer-social a:hover {
-  background: var(--accent-600);
+  background: var(--gradient-primary);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(var(--primary-500-rgb), 0.3);
-  border-color: var(--primary-500);
+  box-shadow: var(--glass-shadow-sm);
+  border-color: transparent;
 }
 
 .footer-social svg {
@@ -162,7 +166,7 @@
 }
 
 .footer-info {
-  color: var(--primary-400);
+  color: var(--text-secondary);
   font-size: var(--font-size-xs);
   line-height: 1.5;
   max-width: 600px;
@@ -229,7 +233,7 @@
 
 /* Estados de focus para accesibilidad */
 .footer-section a:focus, .footer-social a:focus {
-  outline: 2px solid var(--accent-400);
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 
@@ -245,7 +249,7 @@
   top: 0;
   width: 2px;
   height: 0;
-  background: linear-gradient(180deg, var(--accent-400), var(--primary-400));
+  background: var(--gradient-primary);
   transition: height 0.3s ease;
 }
 

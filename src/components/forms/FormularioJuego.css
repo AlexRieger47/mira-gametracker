@@ -1,4 +1,4 @@
-/* Estilos Formulario Juego */
+/* Estilos Formulario Juego – Liquid Glass */
 
 /* Contenedor principal */
 .formulario-juego {
@@ -6,6 +6,20 @@
   margin: 0 auto;
   padding: var(--spacing-xl);
   min-height: calc(100vh - 140px);
+  position: relative;
+}
+
+/* Glow decorativo sutil detrás del card */
+.formulario-juego::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 300px at 10% 5%, color-mix(in oklab, var(--miraki-1) 30%, transparent), transparent 60%),
+    radial-gradient(600px 300px at 90% 100%, color-mix(in oklab, var(--miraki-3) 30%, transparent), transparent 60%);
+  filter: blur(2px);
+  opacity: 0.55;
 }
 
 /* Estado de carga */
@@ -23,16 +37,31 @@
   width: 50px;
   height: 50px;
   border: 4px solid #D9DCEF;
-  border-top: 4px solid var(--primary-500);
+  border-top: 4px solid var(--miraki-1);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 /* Contenedor del Formulario */
+.form-container {
+  background: var(--glass-gradient);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
 .form-header {
-  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  /* Header tintado sobre glass */
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--miraki-1) 70%, transparent),
+    color-mix(in oklab, var(--miraki-2) 70%, transparent)
+  );
   color: #fff;
   padding: var(--spacing-xl);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .header-content {
@@ -44,12 +73,14 @@
 .header-icon {
   font-size: 2rem;
   opacity: 0.9;
+  color: var(--primary-700);
 }
 
 .form-header h1 {
   font-size: 1.75rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
+  color: var(--gray-100);
 }
 
 .form-header p {
@@ -76,6 +107,11 @@
   gap: var(--spacing-sm);
 }
 
+select option {
+  background-color: var(--gray-300);
+  border-radius: 0%;
+}
+
 .form-group.full-width {
   grid-column: 1 / -1;
 }
@@ -94,9 +130,11 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: 0.5rem 0.75rem;
-  background: var(--surface-2, #fff);
-  border: 1px solid var(--border-subtle, #e5e7eb);
-  border-radius: var(--radius-md);
+  background: var(--glass-gradient);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
   cursor: pointer;
   text-align: left;
   color: var(--text-base, #1f2937);
@@ -104,13 +142,14 @@
 }
 
 .igdb-suggestions .suggestion-item:hover {
-  background: var(--surface-1, #f9fafb);
+  background: color-mix(in oklab, var(--primary-600) 12%, var(--glass-gradient) 88%);
   transform: translateY(-1px);
   box-shadow: var(--shadow-glass-sm, var(--shadow-sm));
   border-color: var(--navbar-border, #D9DCEF)
 }
 
 .suggestion-title {
+  color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -125,18 +164,25 @@
   justify-self: start;
 }
 
+/* Ajuste por nombre usado en JSX */
+.suggestion-platforms {
+  color: var(--text-muted, #6b7280);
+  font-size: var(--font-size-sm);
+  justify-self: start;
+}
+
 /* Labels */
 label {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   font-weight: 600;
-  color: #646DB9;
+  color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
 
 .label-icon {
-  color: var(--primary-500);
+  color: var(--miraki-1);
   font-size: var(--font-size-base);
 }
 
@@ -147,11 +193,14 @@ input[type="number"],
 select,
 textarea {
   padding: 0.75rem;
-  border: 2px solid #C8CAEB;
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
   transition: all var(--transition-fast);
-  background: #fff;
+  background: var(--glass-gradient);
+  color: var(--text-primary);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 input[type="text"]:focus,
@@ -160,8 +209,8 @@ input[type="number"]:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px var(--ring-soft);
 }
 
 input.error,
@@ -193,7 +242,10 @@ textarea {
   margin-top: 0.75rem;
   border-radius: var(--radius-md);
   overflow: hidden;
-  border: 2px solid #D9DCEF;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-gradient);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   max-width: 200px;
 }
 
@@ -207,7 +259,7 @@ textarea {
 /* Contador de caracteres */
 .character-count {
   font-size: 0.75rem;
-  color: var(--gray-500);
+  color: var(--text-muted);
   text-align: right;
   margin-top: 0.25rem;
 }
@@ -218,21 +270,23 @@ textarea {
   align-items: center;
   gap: 0.75rem;
   padding: var(--spacing-md);
-  background: #F8F9FB;
+  background: var(--glass-gradient);
   border-radius: var(--radius-md);
-  border: 2px solid #D9DCEF;
+  border: 1px solid var(--glass-border);
   transition: all var(--transition-fast);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .checkbox-group:hover {
-  background: #E9EBF2;
-  border-color: var(--primary-300);
+  background: color-mix(in oklab, var(--miraki-1) 10%, var(--glass-gradient) 90%);
+  border-color: var(--miraki-2);
 }
 
 input[type="checkbox"] {
   width: 1.25rem;
   height: 1.25rem;
-  accent-color: var(--primary-500);
+  accent-color: var(--miraki-1);
   cursor: pointer;
 }
 
@@ -242,7 +296,7 @@ input[type="checkbox"] {
   gap: 0.5rem;
   cursor: pointer;
   font-weight: 500;
-  color: #646DB9;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -272,7 +326,7 @@ input[type="checkbox"] {
   gap: var(--spacing-md);
   justify-content: flex-end;
   padding-top: var(--spacing-xl);
-  border-top: 1px solid #D9DCEF;
+  border-top: 1px solid var(--glass-border);
 }
 
 .btn {
@@ -298,25 +352,27 @@ input[type="checkbox"] {
 }
 
 .btn-primary {
-  background: var(--primary-500);
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
   color: #fff;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--primary-600);
+  background: var(--primary-700);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-  background: #E9EBF2;
-  color: #646DB9;
-  border: 1px solid #C8CAEB;
+  background: var(--glass-gradient);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: #D9DCEF;
-  color: #2F358E;
+  background: color-mix(in oklab, var(--primary-600) 12%, var(--glass-gradient) 88%);
+  color: var(--text-primary);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
@@ -417,17 +473,17 @@ input[type="checkbox"] {
 
 /* Estados de hover mejorados */
 .form-container:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--glass-shadow-md);
   transition: box-shadow var(--transition-fast);
 }
 
 /* Efectos de focus mejorados */
 .form-group:focus-within label {
-  color: var(--primary-600);
+  color: var(--miraki-1);
 }
 
 .form-group:focus-within .label-icon {
-  color: var(--primary-600);
+  color: var(--miraki-1);
   transform: scale(1.1);
 }
 
@@ -441,5 +497,5 @@ textarea:valid:not(:placeholder-shown) {
 input:invalid:not(:placeholder-shown),
 select:invalid,
 textarea:invalid:not(:placeholder-shown) {
-  border-color: var(--warning);
+  border-color: var(--yellow-500);
 }

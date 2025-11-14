@@ -191,12 +191,16 @@ export const GameProvider = ({ children }) => {
   const eliminarJuego = async (id) => {
     try {
       dispatch({ type: actionTypes.SET_LOADING, payload: true })
-      await gameService.deleteJuego(id)
+      const result = await gameService.deleteJuego(id)
+      if (!result?.success) {
+        throw new Error(result?.message || 'No se pudo eliminar el juego')
+      }
       dispatch({ type: actionTypes.DELETE_JUEGO, payload: id })
       toast.success('Juego eliminado exitosamente de tu biblioteca')
     } catch (error) {
       dispatch({ type: actionTypes.SET_ERROR, payload: error.message })
       toast.error('Error al eliminar el juego')
+      throw error
     }
   }
 

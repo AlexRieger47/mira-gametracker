@@ -18,7 +18,7 @@ import { toast } from 'react-hot-toast'
 import './TarjetaJuego.css'
 
 const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
-  const { deleteGame, updateGame } = useContext(GameContext)
+  const { eliminarJuego, actualizarJuego } = useContext(GameContext)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
 
@@ -36,11 +36,10 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
   const handleDelete = async () => {
     setIsDeleting(true)
     try {
-      await deleteGame(game._id)
-      toast.success('Juego eliminado con éxito')
+      await eliminarJuego(game._id)
       setShowDeleteConfirm(false)
     } catch (error) {
-      toast.error('Error al eliminar el juego')
+      // El contexto ya muestra el error correspondiente
     } finally {
       setIsDeleting(false)
     }
@@ -49,7 +48,7 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
   // Alternar estado completado
   const toggleCompleted = async () => {
     try {
-      await updateGame(game._id, {
+      await actualizarJuego(game._id, {
         completado: !game.completado
       })
       toast.success(
@@ -149,7 +148,7 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
 
             <div className="game-actions">
               <Link
-                to={`/editar/juego/${game._id}`}
+                to={`/editar-juego/${game._id}`}
                 className="action-btn edit-btn"
                 title="Editar juego"
               >
@@ -279,7 +278,7 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
 
           <div className="game-actions">
             <Link
-              to={`/editar/juego/${game._id}`}
+              to={`/editar-juego/${game._id}`}
               className="action-btn edit-btn"
               title="Editar juego"
             >

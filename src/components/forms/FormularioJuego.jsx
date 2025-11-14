@@ -24,10 +24,10 @@ const FormularioJuego = () => {
   const isEditing = Boolean(id)
 
   const {
-    games,
-    addGame,
-    updateGame,
-    getGameById,
+    juegos,
+    agregarJuego,
+    actualizarJuego,
+    obtenerJuego,
     loading
   } = useContext(GameContext)
 
@@ -69,27 +69,27 @@ const FormularioJuego = () => {
         setIsLoadingGame(true)
         try {
           // Buscar en el estado local primero
-          let gameData = games.find(g => g.id === id)
-          if (!gameData) {
+          let juegoData = juegos.find(j => (j._id === id || j.id === id))
+          if (!juegoData) {
             // Si no está en el estado local, buscar en el backend
-            gameData = await getGameById(id)
+            juegoData = await obtenerJuego(id)
           }
 
-          if (gameData) {
+          if (juegoData) {
             // Llenar el formulario con los datos del juego
             reset({
-              titulo: gameData.titulo || '',
-              genero: gameData.genero || '',
-              plataforma: gameData.plataforma || '',
-              añoLanzamiento: gameData.añoLanzamiento || new Date().getFullYear(),
-              desarrollador: gameData.desarrollador || '',
-              imagenPortada: gameData.imagenPortada || '',
-              descripcion: gameData.descripcion || '',
-              completado: gameData.completado || false
+              titulo: juegoData.titulo || '',
+              genero: juegoData.genero || '',
+              plataforma: juegoData.plataforma || '',
+              añoLanzamiento: juegoData.añoLanzamiento || new Date().getFullYear(),
+              desarrollador: juegoData.desarrollador || '',
+              imagenPortada: juegoData.imagenPortada || '',
+              descripcion: juegoData.descripcion || '',
+              completado: juegoData.completado || false
             })
 
-            if (gameData.imagenPortada) {
-              setImagePreview(gameData.imagenPortada)
+            if (juegoData.imagenPortada) {
+              setImagePreview(juegoData.imagenPortada)
             }
           } else {
             toast.error('Juego no encontrado')
@@ -105,7 +105,7 @@ const FormularioJuego = () => {
     }
 
     loadGameData()
-  }, [id, isEditing, games, getGameById, reset, navigate])
+  }, [id, isEditing, juegos, obtenerJuego, reset, navigate])
 
   // Actualizar preview de imagen cuando cambia la URL
   useEffect(() => {
@@ -180,16 +180,16 @@ const FormularioJuego = () => {
   const onSubmit = async (data) => {
     try {
       // Convertir año a número
-      const gameData = {
+      const juegoData = {
         ...data,
         añoLanzamiento: parseInt(data.añoLanzamiento)
       }
 
       if (isEditing) {
-        await updateGame(id, gameData)
+        await actualizarJuego(id, juegoData)
         toast.success('Juego actualizado correctamente')
       } else {
-        await addGame(gameData)
+        await agregarJuego(juegoData)
         toast.success('Juego agregado correctamente')
       }
 
@@ -221,8 +221,8 @@ const FormularioJuego = () => {
       <div className="formulario-juego">
         <div className="loading-container">
           <div className="loading-spinner"></div>
-          <p>Cargando información del juego...</p>
         </div>
+        <p>Cargando información del juego...</p>
       </div>
     )
   }
@@ -266,7 +266,7 @@ const FormularioJuego = () => {
                   }
                 })}
                 className={errors.titulo ? 'error' : ''}
-                placeholder="Ej: The Legend of Zelda: Breath of the Wild"
+                placeholder="Ej: Minecraft: Java Edition"
               />
               {/* Dropdown de sugerencias de IGDB */}
               {showSuggestions && (
@@ -309,7 +309,7 @@ const FormularioJuego = () => {
                 })}
                 className={errors.genero ? 'error' : ''}
               >
-                <option value="">Selecciona un género</option>
+                <option className="genre-option" value="">Selecciona un género</option>
                 {[...generos, ...(extraGenre ? [extraGenre] : [])].map(genero => (
                   <option key={genero} value={genero}>
                     {genero}

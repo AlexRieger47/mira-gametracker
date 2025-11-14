@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useGame } from '../../context/GameContext'
+import TarjetaJuego from '../games/TarjetaJuego'
 import {
   FaSearch,
   FaFilter,
   FaPlus,
   FaGamepad,
+  FaBook,
   FaTh,
   FaList,
   FaSortAmountDown,
@@ -45,7 +47,7 @@ const BibliotecaJuegos = () => {
   // Filtrar y ordenar juegos
   const filteredAndSortedGames = juegosList
     .filter(game => {
-      const matchesSearch = game.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      const matchesSearch = game.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (game.desarrollador || '').toLowerCase().includes(searchTerm.toLowerCase())
       const matchesGenre = !selectedGenre || game.genero === selectedGenre
       const matchesPlatform = !selectedPlatform || game.plataforma === selectedPlatform
@@ -95,8 +97,8 @@ const BibliotecaJuegos = () => {
     return (
       <div className="biblioteca-loading">
         <div className="loading-spinner">
-          <p>Cargando tu biblioteca...</p>
         </div>
+        <p>Cargando tu biblioteca...</p>
       </div>
     )
   }
@@ -120,7 +122,7 @@ const BibliotecaJuegos = () => {
       <div className="biblioteca-header">
         <div className="header-content">
           <h1>
-            <FaGamepad className="header-icon" />
+            <FaBook className="header-icon" />
             Mi Biblioteca de Juegos
           </h1>
           <p className="header-description">
@@ -303,14 +305,16 @@ const BibliotecaJuegos = () => {
       </div>
 
       {/* Información de resultados */}
-      {filteredAndSortedGames.length === 0 && (
-        <div className="results-info">
-          <p>
-            Mostrando {filteredAndSortedGames.length} de {totalGames} juegos
-          </p>
-        </div>
-      )}
-    </div>
+      {
+        filteredAndSortedGames.length === 0 && (
+          <div className="results-info">
+            <p>
+              Mostrando {filteredAndSortedGames.length} de {totalGames} juegos
+            </p>
+          </div>
+        )
+      }
+    </div >
   )
 }
 

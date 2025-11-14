@@ -65,7 +65,7 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo y Título */}
-        <Link to="/" className="navbar-brand" onClick={closeMenu}>
+        <Link to="/biblioteca" className="navbar-brand" onClick={closeMenu}>
           <img src={miraLogo} alt="Mira GameTracker" className="navbar-logo" width={50} height={50} />
           <span className="navbar-title">Mira GameTracker</span>
         </Link>

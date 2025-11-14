@@ -68,7 +68,7 @@ function App() {
                       <h1>404</h1>
                       <h2>Página no encontrada</h2>
                       <p>La página que buscas no existe en tu biblioteca.</p>
-                      <a href="/" className="btn btn-primary">
+                      <a href="/biblioteca" className="btn btn-primary">
                         Volver a la biblioteca
                       </a>
                     </div>

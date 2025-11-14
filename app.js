@@ -29,7 +29,15 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('/:path(*)', cors(corsOptions)); // Preflight
+
+// Preflight global sin patrones de ruta (compatible con Express 5)
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    return cors(corsOptions)(req, res, () => res.sendStatus(204));
+  }
+  next();
+});
+
 app.use(express.json());
 
 // Conexión a MongoDB

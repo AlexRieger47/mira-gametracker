@@ -11,8 +11,9 @@
     "preview": "vite preview",
     "postbuild": "copy dist\\index.html dist\\404.html",
     "clean:ghpages": "gh-pages-clean",
+    "deploy:cleanup": "gh-pages -d dist --no-history --remove .gitmodules --nojekyll",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --add --no-history"
+    "deploy": "gh-pages -d dist --add --no-history --nojekyll"
   },
   "dependencies": {
     "axios": "^1.12.2",

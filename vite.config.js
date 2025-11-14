@@ -9,7 +9,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://gametracker-api-y3q1.onrender.com',
+        target: 'https://gametracker-api-y3q1.onrender.com/',
         changeOrigin: true,
         secure: false
       }

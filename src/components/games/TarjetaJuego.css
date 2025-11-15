@@ -67,6 +67,13 @@
   transition: var(--transition);
 }
 
+.tarjeta-juego.list-view .game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .tarjeta-juego:hover .game-image {
   transform: scale(1.05);
 }
@@ -135,6 +142,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
+/* YA NO SE USA:
 .completed-badge {
   display: flex;
   align-items: center;
@@ -147,12 +155,13 @@
   border-radius: var(--radius);
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+  /* Eliminado por no usarse tras quitar el bloque en JSX 
 
 /* Contenido del juego */
 .game-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center; /* antes: flex-start */
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-md);
 }
@@ -188,11 +197,11 @@
 }
 
 .status-btn.completed {
-  color: var(--success-500);
+  color: var(--success-700);
 }
 
 .status-btn.pending {
-  color: var(--warning);
+  color: var(--warning-700);
 }
 
 .status-btn:hover {
@@ -320,24 +329,24 @@
 }
 
 .edit-btn {
-  background: color-mix(in oklab, var(--success-500) 18%, var(--glass-gradient) 82%);
+  background: color-mix(in oklab, var(--success-500) 18%, transparent 82%);
   color: var(--miraki-1);
 }
 
 .edit-btn:hover {
-  background: color-mix(in oklab, var(--success-600) 18%, var(--glass-gradient) 82%);
+  background: color-mix(in oklab, var(--success-400) 18%, transparent 82%);
   color: var(--success-500);
   transform: translateY(-2px);
 }
 
 .delete-btn {
-  background: color-mix(in oklab, var(--error) 16%, var(--glass-gradient) 84%);
-  color: var(--error);
+  background: color-mix(in oklab, var(--error-500) 16%, transparent 84%);
+  color: var(--miraki-1);
 }
 
 .delete-btn:hover {
-  background: color-mix(in oklab, var(--error) 35%, transparent);
-  color: #fff;
+  background: color-mix(in oklab, var(--error-400) 35%, transparent);
+  color: var(--error-500);
   transform: translateY(-2px);
 }
 
@@ -577,4 +586,55 @@
 
 .genre-badge[style*="6E6E6E"] { /* Fallback - Gris neutro */
   box-shadow: 0 2px 8px rgba(110, 110, 110, 0.3);
+}
+
+/* Vista List: dos columnas (contenido central + metadatos derecha) */
+.tarjeta-juego.list-view .game-content {
+  padding: var(--spacing-lg);
+  /* anteriormente era flex */
+  display: block;
+}
+
+.tarjeta-juego.list-view .content-grid {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.tarjeta-juego.list-view .main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-juego.list-view .game-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  justify-self: end;
+  align-items: flex-end;
+}
+
+.tarjeta-juego.list-view .game-sidebar .meta-item {
+  justify-content: flex-end;
+}
+
+/* Descripción: en list sin truncar y ocupando espacio central */
+.tarjeta-juego.list-view .game-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-md) 0;
+  white-space: normal;
+}
+
+/* Responsive: una sola columna cuando el ancho es estrecho */
+@media (max-width: 768px) {
+  .tarjeta-juego.list-view .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .tarjeta-juego.list-view .game-sidebar {
+    align-items: flex-start;
+    justify-self: start;
+  }
 }

@@ -18,10 +18,10 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    //Acá simulamos una carga inicial
+    // Acá simulamos una carga inicial
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 1000)
+    }, 3000)
     return () => clearTimeout(timer)
   }, [])
 

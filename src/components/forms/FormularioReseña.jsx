@@ -52,7 +52,6 @@ const FormularioReseña = () => {
     }
   })
 
-  // Niveles de dificultad
   const nivelesDificultad = ['Muy Fácil', 'Fácil', 'Normal', 'Difícil', 'Muy Difícil']
 
   // Cargar juegos al montar el componente
@@ -118,7 +117,6 @@ const FormularioReseña = () => {
     setIsSubmitting(true)
 
     try {
-      // Validaciones adicionales
       if (data.horasJugadas < 0) {
         toast.error('Las horas jugadas no pueden ser negativas')
         setIsSubmitting(false)

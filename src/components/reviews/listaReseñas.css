@@ -1,4 +1,4 @@
-/* ListaReseñas.css */
+/* Estilos para las Listas de Reseñas */
 
 .lista-reseñas {
   min-height: calc(100vh - 140px);
@@ -212,7 +212,7 @@
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--glass-border);
   border-radius: 6px;
-  background: var(--glass-gradient);
+  background: var(--surface-2);
   font-size: 0.875rem;
   -webkit-backdrop-filter: blur(var(--glass-blur));
   backdrop-filter: blur(var(--glass-blur));
@@ -339,28 +339,29 @@
 }
 
 .action-btn.edit {
-  background: color-mix(in oklab, var(--miraki-1) 18%, var(--glass-gradient) 82%);
-  color: var(--miraki-1);
+  background: color-mix(in oklab, var(--success-500) 18%, var(--glass-gradient) 82%);
+  color: var(--success-700);
 }
 
 .action-btn.edit:hover {
-  background: var(--gradient-primary);
+  background: var(--success-700);
   color: #fff;
 }
 
 .action-btn.delete {
-  background: color-mix(in oklab, var(--error) 16%, var(--glass-gradient) 84%);
-  color: var(--error);
+  background: color-mix(in oklab, var(--error-700) 16%, var(--glass-gradient) 84%);
+  color: var(--error-500);
 }
 
 .action-btn.delete:hover {
-  background: color-mix(in oklab, var(--error) 35%, transparent);
+  background: var(--error-700);
   color: #fff;
 }
 
 /* Puntuación y recomendación */
 .review-rating {
   display: flex;
+  background: var(--glass-gradient);
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
@@ -421,7 +422,7 @@
 }
 
 .review-content p {
-  color: var(--gray-700);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
   font-size: 0.875rem;
@@ -572,7 +573,7 @@
   justify-content: center;
 }
 
-/* Responsive Design */
+/* Diseño Responsive */
 @media (max-width: 768px) {
   .lista-reseñas {
     padding: 1rem 0;

@@ -73,7 +73,7 @@
   bottom: -4px;
   width: 30px;
   height: 2px;
-  background: var(--gradient-primary);
+  background: var(--gradient-blue);
   border-radius: 1px;
 }
 
@@ -154,7 +154,7 @@
 }
 
 .footer-social a:hover {
-  background: var(--gradient-primary);
+  background: var(--gradient-blue);
   color: #fff;
   transform: translateY(-2px);
   box-shadow: var(--glass-shadow-sm);
@@ -249,7 +249,7 @@
   top: 0;
   width: 2px;
   height: 0;
-  background: var(--gradient-primary);
+  background: var(--gradient-blue);
   transition: height 0.3s ease;
 }
 

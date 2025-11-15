@@ -68,15 +68,12 @@ const FormularioJuego = () => {
       if (isEditing) {
         setIsLoadingGame(true)
         try {
-          // Buscar en el estado local primero
           let juegoData = juegos.find(j => (j._id === id || j.id === id))
           if (!juegoData) {
-            // Si no está en el estado local, buscar en el backend
             juegoData = await obtenerJuego(id)
           }
 
           if (juegoData) {
-            // Llenar el formulario con los datos del juego
             reset({
               titulo: juegoData.titulo || '',
               genero: juegoData.genero || '',
@@ -116,7 +113,7 @@ const FormularioJuego = () => {
     }
   }, [watchImageUrl])
 
-  // Autocompletado de título con IGDB (debounced)
+  // Autocompletado de título con IGDB
   useEffect(() => {
     const q = (watchTitle || '').trim()
     if (!q || q.length < 2) {
@@ -233,7 +230,7 @@ const FormularioJuego = () => {
         {/* Header */}
         <div className="form-header">
           <div className="header-content">
-            <FaGamepad className="header-icon" />
+            {/*<FaGamepad className="header-icon" />*/}
             <div>
               <h1>{isEditing ? 'Editar Juego' : 'Agregar Nuevo Juego'}</h1>
               <p>

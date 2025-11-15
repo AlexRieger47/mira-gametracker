@@ -9,7 +9,7 @@
 
 .main-content {
   flex: 1;
-  padding-top: 80px; /* Espacio para la navbar fija */
+  padding-top: 80px;
   padding-bottom: var(--spacing-xl);
 }
 
@@ -194,7 +194,7 @@
   margin-right: auto;
 }
 
-/* Ajustes al responsive */
+/* Diseño responsive */
 @media (max-width: 768px) {
   .main-content {
     padding-top: 70px;

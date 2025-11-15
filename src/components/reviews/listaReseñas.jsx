@@ -43,7 +43,6 @@ const ListaReseñas = () => {
   // Estado para confirmación de eliminación
   const [deleteConfirm, setDeleteConfirm] = useState(null)
 
-  // Cargar datos una sola vez al montar el componente
   useEffect(() => {
     cargarReseñas()
     if (juegos.length === 0) {
@@ -51,7 +50,6 @@ const ListaReseñas = () => {
     }
   }, [])
 
-  // Función para obtener información del juego
   const getGameInfo = (juegoId) => {
     if (typeof juegoId === 'object' && juegoId._id) {
       return juegoId

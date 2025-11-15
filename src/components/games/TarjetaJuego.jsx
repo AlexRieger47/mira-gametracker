@@ -17,7 +17,7 @@ import {
 import { toast } from 'react-hot-toast'
 import './TarjetaJuego.css'
 
-const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
+function TarjetaJuego({ game, viewMode = 'grid' }) {
   const { eliminarJuego, actualizarJuego } = useContext(GameContext)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -39,7 +39,6 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
       await eliminarJuego(game._id)
       setShowDeleteConfirm(false)
     } catch (error) {
-      // El contexto ya muestra el error correspondiente
     } finally {
       setIsDeleting(false)
     }
@@ -96,9 +95,7 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
             src={game.imagenPortada || defaultImage(game)}
             alt={game.titulo}
             className="game-image"
-            onError={(e) => {
-              e.target.src = defaultImage(game)
-            }}
+            onError={(e) => { e.target.src = defaultImage(game) }}
           />
           <div className="image-overlay">
             <Link to={`/juego/${game._id}`} className="overlay-btn view-btn">
@@ -108,60 +105,68 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
         </div>
 
         <div className="game-content">
-          <div className="game-header">
-            <h3 className="game-title">{game.titulo}</h3>
-            <div className="game-status">
-              <button
-                className={`status-btn ${game.completado ? 'completed' : 'pending'}`}
-                onClick={toggleCompleted}
-                title={game.completado ? 'Marcar como pendiente' : 'Marcar como completado'}
-              >
-                {game.completado ? <FaCheckCircle /> : <FaClock />}
-              </button>
+          <div className="content-grid">
+            <div className="main-content">
+              <div className="game-header">
+                <h3 className="game-title">{game.titulo}</h3>
+                <div className="game-status">
+                  <button
+                    className={`status-btn ${game.completado ? 'completed' : 'pending'}`}
+                    onClick={toggleCompleted}
+                    title={game.completado ? 'Marcar como pendiente' : 'Marcar como completado'}
+                  >
+                    {game.completado ? <FaCheckCircle /> : <FaClock />}
+                  </button>
+                </div>
+              </div>
+
+              <p className="game-description">
+                {game.descripcion || 'Sin descripción disponible'}
+              </p>
+
+              <div className="game-footer">
+                <div className="game-date">
+                  <FaCalendarAlt />
+                  <span>Agregado: {formatDate(game.fechaCreacion)}</span>
+                </div>
+
+                <div className="game-actions">
+                  <Link
+                    to={`/editar-juego/${game._id}`}
+                    className="action-btn edit-btn"
+                    title="Editar juego"
+                  >
+                    <FaEdit />
+                  </Link>
+                  <button
+                    className="action-btn delete-btn"
+                    onClick={() => setShowDeleteConfirm(true)}
+                    title="Eliminar juego"
+                  >
+                    <FaTrash />
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="game-meta">
-            <span className="game-developer">{game.desarrollador}</span>
-            <span className="game-year">{game.añoLanzamiento}</span>
-            <span
-              className="game-genre"
-              style={{ backgroundColor: getGenreColor(game.genero) }}
-            >
-              {game.genero}
-            </span>
-            <span className="game-platform">{game.plataforma}</span>
-          </div>
-
-          <p className="game-description">
-            {game.descripcion?.length > 150
-              ? `${game.descripcion.substring(0, 150)}...`
-              : game.descripcion || 'Sin descripción disponible'
-            }
-          </p>
-
-          <div className="game-footer">
-            <div className="game-date">
-              <FaCalendarAlt />
-              <span>Agregado: {formatDate(game.fechaCreacion)}</span>
-            </div>
-
-            <div className="game-actions">
-              <Link
-                to={`/editar-juego/${game._id}`}
-                className="action-btn edit-btn"
-                title="Editar juego"
+            <aside className="game-sidebar">
+              <span
+                className="game-genre"
+                style={{ backgroundColor: getGenreColor(game.genero) }}
               >
-                <FaEdit />
-              </Link>
-              <button
-                className="action-btn delete-btn"
-                onClick={() => setShowDeleteConfirm(true)}
-                title="Eliminar juego"
-              >
-                <FaTrash />
-              </button>
-            </div>
+                {game.genero}
+              </span>
+              <span className="game-platform">{game.plataforma}</span>
+
+              <div className="meta-item">
+                <FaGamepad className="meta-icon" />
+                <span className="game-developer">{game.desarrollador}</span>
+              </div>
+              <div className="meta-item">
+                <FaCalendarAlt className="meta-icon" />
+                <span className="game-year">{game.añoLanzamiento}</span>
+              </div>
+            </aside>
           </div>
         </div>
 
@@ -225,12 +230,15 @@ const TarjetaJuego = ({ game, viewMode = 'grid' }) => {
           >
             {game.genero}
           </span>
+          {/* Eliminado el completed-badge por redundante */}
+          {/* ANTES:
           {game.completado && (
             <span className="completed-badge">
               <FaCheckCircle />
               Completado
             </span>
           )}
+          */}
         </div>
       </div>
 

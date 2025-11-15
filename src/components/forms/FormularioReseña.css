@@ -1,4 +1,4 @@
-/* FormularioReseña.css – estilo profesional, limpio y gamer-friendly */
+/* Estilos del Formulario de Reseñas */
 
 /* Contenedor principal */
 .formulario-reseña {
@@ -131,6 +131,11 @@ select {
   padding-right: 2.5rem;
 }
 
+select option {
+  background-color: var(--surface-3);
+  border-radius: 0%;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -160,16 +165,8 @@ textarea.error {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--spacing-md);
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  backdrop-filter: blur(var(--glass-blur));
-}
-
-.game-image {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  box-shadow: var(--glass-shadow-sm);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 .game-details h3 {
@@ -240,13 +237,13 @@ textarea.error {
 
 .recommendation-btn.active.positive {
   background: color-mix(in oklab, var(--success-500) 18%, var(--glass-gradient) 82%);
-  color: #fff;
+  color: var(--text-primary);
   border-color: color-mix(in oklab, var(--success-500) 45%, var(--glass-border) 55%);
 }
 
 .recommendation-btn.active.negative {
   background: color-mix(in oklab, var(--error-600) 18%, var(--glass-gradient) 82%);
-  color: #fff;
+  color: var(--text-primary);
   border-color: color-mix(in oklab, var(--error-600) 45%, var(--glass-border) 55%);
 }
 
@@ -290,7 +287,7 @@ textarea {
   min-width: 140px;
 }
 
-/* Responsive */
+/* Diseño Responsive */
 @media (max-width: 768px) {
   .formulario-reseña { padding: 1rem; }
   .form-header { padding: 1.5rem; }
@@ -300,7 +297,7 @@ textarea {
   .form-grid { grid-template-columns: 1fr; gap: 1rem; }
   .form-group.full-width { grid-column: 1; }
   .game-card { grid-template-columns: 100px 1fr; }
-  .game-image { width: 100px; height: 100px; }
+  .formulario-reseña .game-card .game-image { width: 100px; height: 100px; }
   .form-actions { flex-direction: column; }
   .btn { width: 100%; }
 }

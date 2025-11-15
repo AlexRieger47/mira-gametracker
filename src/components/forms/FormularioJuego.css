@@ -1,4 +1,4 @@
-/* Estilos Formulario Juego – Liquid Glass */
+/* Estilos Formulario Juego */
 
 /* Contenedor principal */
 .formulario-juego {
@@ -54,7 +54,6 @@
 }
 
 .form-header {
-  /* Header tintado sobre glass */
   background: linear-gradient(135deg,
     color-mix(in oklab, var(--miraki-1) 70%, transparent),
     color-mix(in oklab, var(--miraki-2) 70%, transparent)
@@ -62,31 +61,36 @@
   color: #fff;
   padding: var(--spacing-xl);
   border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
 }
 
 .header-content {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
+  justify-content: center;
+  text-align: center;
 }
 
-.header-icon {
+/*.header-icon {
   font-size: 2rem;
   opacity: 0.9;
   color: var(--primary-700);
-}
+}*/
 
 .form-header h1 {
   font-size: 1.75rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  color: var(--gray-100);
+  color: var(--text-primary);
 }
 
 .form-header p {
   font-size: var(--font-size-base);
   opacity: 0.9;
   margin: 0;
+  color: var(--text-secondary);
 }
 
 /* Formulario */
@@ -108,7 +112,7 @@
 }
 
 select option {
-  background-color: var(--gray-300);
+  background-color: var(--surface-3);
   border-radius: 0%;
 }
 
@@ -116,7 +120,7 @@ select option {
   grid-column: 1 / -1;
 }
 
-/* Autocomplete IGDB */
+/* Autocompletar con IGDB */
 .igdb-suggestions {
   position: relative;
   margin-top: var(--spacing-sm);
@@ -142,7 +146,7 @@ select option {
 }
 
 .igdb-suggestions .suggestion-item:hover {
-  background: color-mix(in oklab, var(--primary-600) 12%, var(--glass-gradient) 88%);
+  background: color-mix(in oklab, var(--primary-600) 12%, transparent);
   transform: translateY(-1px);
   box-shadow: var(--shadow-glass-sm, var(--shadow-sm));
   border-color: var(--navbar-border, #D9DCEF)
@@ -164,7 +168,6 @@ select option {
   justify-self: start;
 }
 
-/* Ajuste por nombre usado en JSX */
 .suggestion-platforms {
   color: var(--text-muted, #6b7280);
   font-size: var(--font-size-sm);
@@ -199,8 +202,8 @@ textarea {
   transition: all var(--transition-fast);
   background: var(--glass-gradient);
   color: var(--text-primary);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 input[type="text"]:focus,
@@ -216,7 +219,7 @@ textarea:focus {
 input.error,
 select.error,
 textarea.error {
-  border-color: var(--error);
+  border-color: var(--error-700);
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
@@ -264,7 +267,7 @@ textarea {
   margin-top: 0.25rem;
 }
 
-/* Checkbox personalizado */
+/* Checkbox */
 .checkbox-group {
   display: flex;
   align-items: center;
@@ -279,14 +282,19 @@ textarea {
 }
 
 .checkbox-group:hover {
-  background: color-mix(in oklab, var(--miraki-1) 10%, var(--glass-gradient) 90%);
-  border-color: var(--miraki-2);
+  background: color-mix(in oklab, var(--success-500) 10%, var(--glass-gradient) 90%);
+  border-color: var(--success-700);
+}
+
+.checkbox-group:focus-within {
+  background: color-mix(in oklab, var(--success-500) 8%, var(--glass-gradient) 92%);
+  border-color: var(--success-500);
 }
 
 input[type="checkbox"] {
   width: 1.25rem;
   height: 1.25rem;
-  accent-color: var(--miraki-1);
+  accent-color: var(--success-500);
   cursor: pointer;
 }
 
@@ -301,8 +309,19 @@ input[type="checkbox"] {
 }
 
 .checkbox-icon {
-  color: var(--success);
+  color: var(--success-700);
   font-size: 1.1rem;
+}
+
+/* Forzar el color del label en focus/checked del checkbox */
+input[type="checkbox"]:focus + .checkbox-label,
+input[type="checkbox"]:checked + .checkbox-label {
+  color: var(--success-500);
+}
+
+input[type="checkbox"]:focus + .checkbox-label .checkbox-icon,
+input[type="checkbox"]:checked + .checkbox-label .checkbox-icon {
+  color: var(--success-500);
 }
 
 /* Mensajes de error */
@@ -477,8 +496,7 @@ input[type="checkbox"] {
   transition: box-shadow var(--transition-fast);
 }
 
-/* Efectos de focus mejorados */
-.form-group:focus-within label {
+.form-group:focus-within label:not(.checkbox-label) {
   color: var(--miraki-1);
 }
 

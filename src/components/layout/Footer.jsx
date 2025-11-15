@@ -64,7 +64,7 @@ const Footer = () => {
           </p>
           <div className="footer-social">
             <a
-              href="https://github.com/alexander-david-molina-rieger"
+              href="https://github.com/AlexRieger47"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub">

@@ -142,7 +142,7 @@
 }
 
 .action-btn.delete:hover {
-  background: color-mix(in oklab, var(--error) 35%, transparent);
+  background: color-mix(in oklab, var(--error-700) 35%, transparent);
   border-color: transparent;
   color: #fff;
 }
@@ -549,7 +549,7 @@
   justify-content: flex-end;
 }
 
-/* Responsive Design */
+/* Diseño Responsive */
 @media (max-width: 768px) {
   .detalle-juego {
     padding: 1rem;

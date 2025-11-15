@@ -21,33 +21,36 @@
   --primary-200: #D9C6DF;
   --primary-300: #D2B3DB;
   --primary-400: #CBA0D8;
-  --primary-500: var(--miraki-1); /* = #D07AFA */
+  --primary-500: var(--miraki-1);
   --primary-600: #B55FE2;
   --primary-700: #8F3DB6;
   --primary-800: #6C2A86;
   --primary-900: #4A1B5A;
 
   /* Colores de acento */
-  --accent-50:  #E5DFE3; /* blush muy suave */
+  --accent-50:  #E5DFE3;
   --accent-100: #fee6fe;
   --accent-200: #fcb5fc;
   --accent-300: #f984fa;
   --accent-400: #f753f9;
-  --accent-500: #f522f7; /* tono principal - fucsia cálido */
+  --accent-500: #f522f7;
   --accent-600: #dc08dd;
   --accent-700: #ab06ac;
   --accent-800: #7a057b;
-  --accent-900: #49034a; /* fucsia profundo / casi borgoña */
+  --accent-900: #49034a;
 
-  /* Paleta Miraki (Colores principales del Logo) */
+  /* Paleta Miraki (Alteré los colores del logo) */
   --miraki-1: #D07AFA;
   --miraki-2: #DFAAF2;
   --miraki-3: #E9D3E5;
 
-  /* Gradiente de marca inspirado en MirakiWeb pero con la nueva paleta */
+  /* Gradiente de marca inspirado en mi web Miraki */
   --gradient-primary: linear-gradient(135deg, var(--miraki-3) 0%, var(--miraki-2) 50%, var(--miraki-1) 100%);
   --gradient-secondary: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-800) 50%, var(--primary-700) 100%);
   --gradient-accent: linear-gradient(135deg, var(--accent-400) 0%, var(--accent-300) 50%, var(--accent-200) 100%);
+  --gradient-blue: linear-gradient(135deg, var(--blue-400) 0%, var(--blue-300) 50%, var(--blue-200) 100%);
+  --gradient-pink: linear-gradient(135deg, var(--pink-400) 0%, var(--pink-300) 50%, var(--pink-200) 100%);
+  --gradient-success: linear-gradient(135deg, var(--success-700) 0%, var(--success-600) 50%, var(--success-500) 100%);
 
   --accent-logo: var(--miraki-1);
 
@@ -99,6 +102,42 @@
   --error-800: #750a0a;
   --error-900: #460606;
 
+  /* Warning */
+  --warning-50:  #FFFDF5;
+  --warning-100: #fef5e7;
+  --warning-200: #fce2b6;
+  --warning-300: #face85;
+  --warning-400: #f8bb54;
+   --warning-500: #f59e0b;
+   --warning-600: #dc8e09;
+   --warning-700: #ab6e07;
+   --warning-800: #7a4f05;
+   --warning-900: #492f03;
+
+   /* Blue */
+   --blue-50: #eef4ff;
+  --blue-100: #d9e6ff;
+  --blue-200: #bfcfff;
+  --blue-300: #9fb0ff;
+  --blue-400: #7f92ff;
+  --blue-500: #5e72ff;
+  --blue-600: #4b56e6;
+  --blue-700: #3944c2;
+  --blue-800: #2f358f;
+  --blue-900: #232455;
+
+   /* Pink */
+  --pink-50: #FFF2FA;
+  --pink-100: #FCE6F6;
+  --pink-200: #F8CEE9;
+  --pink-300: #F4AEDA;
+  --pink-400: #F07FBF;
+  --pink-500: #E64BA6;
+  --pink-600: #C93A8A;
+  --pink-700: #9E2B6A;
+  --pink-800: #752048;
+  --pink-900: #4B162F;
+
   /* Enlaces */
   --link: var(--miraki-1);
   --link-hover: var(--miraki-2);
@@ -113,7 +152,6 @@
   --navbar-border: rgba(255, 255, 255, 0.1);
 
   /* Colores de estado */
-  --warning: #f59e0b;
   --info:  var(--accent-500);
 
   /* Sombras */
@@ -155,19 +193,15 @@
   --transition-fast: all 0.15s ease-in-out;
   --transition-slow: all 0.3s ease-in-out;
 
-  /* Paleta extendida para compatibilidad */
-  --blue-500: var(--accent-500);
-  --blue-600: var(--accent-600);
+  /* Paleta extendida para compatibilidad con arreglos que me hizo la IA */
   --green-500: var(--success-500);
   --green-600: var(--success-600);
-  --yellow-400: #FCE3A8;
-  --yellow-500: #F59E0B;
-  --red-100: #FFE9E9;
-  --red-500: var(--error);
+  --yellow-400: var(--warning-400);
+  --yellow-500: var(--warning-500);
+  --red-100: var(--error-100);
+  --red-500: var(--error-500);
   --purple-500: var(--primary-500);
   --purple-600: var(--primary-600);
-  --pink-500: #EC4899;
-  --pink-600: #DB2777;
 
   /* Valores RGB auxiliares */
   --primary-500-rgb: 208, 122, 250;
@@ -180,7 +214,7 @@
   --glass-shadow-md: 0 8px 24px rgba(31, 38, 135, 0.18);
   --glass-shadow-lg: 0 16px 40px rgba(31, 38, 135, 0.22);
   --glass-blur: 14px;
-  --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+  --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   
   /* Fondo global (modo claro) */
   --app-bg: linear-gradient(120deg,
@@ -275,7 +309,7 @@ body {
   --toast-border: #374151;
 }
 
-/* Fallback si el navegador no soporta backdrop-filter */
+/* Fallback por si el navegador no soporta backdrop-filter */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   :root {
     --glass-blur: 0px;
@@ -507,7 +541,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+  background: var(--gradient-secondary);
   color: #fff;
 }
 

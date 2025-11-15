@@ -41,8 +41,16 @@ const BibliotecaJuegos = () => {
     cargarJuegos()
   }, [])
 
-  // Aseguramos arreglo para evitar errores de undefined
   const juegosList = Array.isArray(juegos) ? juegos : []
+
+  // Opciones dinámicas para filtros (deducidas de la biblioteca)
+  const generos = Array.from(new Set(
+    juegosList.map(game => game.genero).filter(Boolean)
+  )).sort()
+
+  const plataformas = Array.from(new Set(
+    juegosList.map(game => game.plataforma).filter(Boolean)
+  )).sort()
 
   // Filtrar y ordenar juegos
   const filteredAndSortedGames = juegosList
@@ -59,8 +67,8 @@ const BibliotecaJuegos = () => {
       let aValue, bValue
       switch (sortBy) {
         case 'titulo':
-          aValue = a.nombre.toLowerCase()
-          bValue = b.nombre.toLowerCase()
+          aValue = (a.titulo || '').toLowerCase()
+          bValue = (b.titulo || '').toLowerCase()
           break
         case 'añoLanzamiento':
           aValue = a.añoLanzamiento

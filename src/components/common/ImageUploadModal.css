@@ -1,0 +1,47 @@
+.upload-modal {
+  background: var(--glass-gradient);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 520px;
+  width: 95%;
+  box-shadow: var(--glass-shadow-lg);
+  border: 1px solid var(--glass-border);
+  animation: modalSlideIn 0.25s ease-out;
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.dropzone {
+  border: 2px dashed var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  text-align: center;
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.dropzone.dragging {
+  background: color-mix(in oklab, var(--primary-600) 12%, var(--surface-3) 88%);
+  border-color: var(--primary-500);
+}
+
+.dropzone-placeholder .dropzone-icon {
+  font-size: 3rem;
+  color: var(--miraki-1);
+  margin-bottom: var(--spacing-sm);
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow-md);
+}
+
+.hint {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted, #6b7280);
+}

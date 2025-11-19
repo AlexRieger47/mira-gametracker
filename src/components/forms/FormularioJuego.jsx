@@ -16,6 +16,7 @@ import {
 } from 'react-icons/fa'
 import { toast } from 'react-hot-toast'
 import { searchIGDB, getIGDBGame } from '../../services/igdbService'
+import ImageUploadModal from '../common/ImageUploadModal'
 import './FormularioJuego.css'
 
 const FormularioJuego = () => {
@@ -38,6 +39,7 @@ const FormularioJuego = () => {
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [extraPlatform, setExtraPlatform] = useState('')
   const [extraGenre, setExtraGenre] = useState('')
+  const [showUploadModal, setShowUploadModal] = useState(false)
 
   const {
     register,
@@ -418,6 +420,19 @@ const FormularioJuego = () => {
                 <span className="error-message">{errors.imagenPortada.message}</span>
               )}
 
+              {/* Botón para subir imagen desde PC */}
+              <div style={{ marginTop: '0.75rem' }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowUploadModal(true)}
+                  title="Subir imagen desde tu PC"
+                >
+                  <FaImage style={{ marginRight: '0.5rem' }} />
+                  Subir imagen desde tu PC
+                </button>
+              </div>
+
               {/* Preview de imagen */}
               {imagePreview && (
                 <div className="image-preview">
@@ -504,6 +519,16 @@ const FormularioJuego = () => {
           </div>
         </form>
       </div>
+
+      {/* Modal de Subida */}
+      <ImageUploadModal
+        isOpen={showUploadModal}
+        onClose={() => setShowUploadModal(false)}
+        onUploaded={(url) => {
+          setValue('imagenPortada', url, { shouldValidate: true })
+          setImagePreview(url)
+        }}
+      />
     </div>
   )
 }

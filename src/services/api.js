@@ -13,6 +13,12 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     // Me recomendaron agregar tokens/headers de autenticación aquí
+    if (config.data instanceof FormData) {
+      if (config.headers) {
+        delete config.headers['Content-Type'];
+        delete config.headers['content-type'];
+      }
+    }
     console.log(`🚀 ${config.method.toUpperCase()} ${config.url}`)
     return config
   },

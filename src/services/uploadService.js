@@ -5,9 +5,8 @@ export const uploadService = {
     const formData = new FormData()
     formData.append('imagen', file)
 
-    const response = await api.post('/uploads/portadas', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    })
+    // Axios agrega el boundary automáticamente
+    const response = await api.post('/uploads/portadas', formData)
     return response.data
   }
 }

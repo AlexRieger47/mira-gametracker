@@ -57,6 +57,14 @@ const JuegoSchema = new mongoose.Schema({
       type: Boolean,
       default: false
     },
+    favorito: {
+      type: Boolean,
+      default: false
+    },
+    enWishlist: {
+      type: Boolean,
+      default: false
+    },
     fechaCreacion: {
       type: Date,
       default: Date.now
@@ -79,6 +87,8 @@ JuegoSchema.index({titulo: 1});
 JuegoSchema.index({genero: 1});
 JuegoSchema.index({plataforma: 1});
 JuegoSchema.index({completado: 1});
+JuegoSchema.index({favorito: 1});
+JuegoSchema.index({enWishlist: 1});
 JuegoSchema.index({fechaCreacion: -1});
 
 const Juego = mongoose.model('Juego', JuegoSchema);

@@ -10,6 +10,9 @@ router.get('/', async (req, res) => {
       genero,
       plataforma,
       completado,
+      favorito,
+      wishlist,
+      enWishlist,
       buscar,
       ordenar = 'fechaCreacion',
       orden = 'desc',
@@ -23,6 +26,9 @@ router.get('/', async (req, res) => {
     if (genero) filtros.genero = genero;
     if (plataforma) filtros.plataforma = plataforma;
     if (completado !== undefined) filtros.completado = completado === 'true';
+    if (favorito !== undefined) filtros.favorito = favorito === 'true';
+    const wl = enWishlist !== undefined ? enWishlist : wishlist;
+    if (wl !== undefined) filtros.enWishlist = wl === 'true';
 
     // Búsqueda por título o desarrollador
     if (buscar) {

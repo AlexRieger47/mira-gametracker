@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -68,10 +69,16 @@ app.get('/api', (req, res) => {
 const juegosRoutes = require('./routes/juegos.routes');
 const reseñasRoutes = require('./routes/reseñas.routes');
 const igdbRoutes = require('./routes/igdb.routes');
+const uploadsRoutes = require('./routes/uploads.routes');
 
 app.use('/api/juegos', juegosRoutes);
 app.use('/api/resenas', reseñasRoutes);
 app.use('/api/igdb', igdbRoutes);
+app.use('/api/uploads', uploadsRoutes);
+
+// Archivos subidos de forma estática
+const uploadDir = path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadDir));
 
 // Middleware de manejo de errores
 app.use((err, req, res, next) => {

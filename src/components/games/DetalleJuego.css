@@ -306,7 +306,7 @@
   gap: 0.75rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -429,25 +429,25 @@
   align-items: center;
   text-align: center;
   padding: 3rem 1rem;
-  color: var(--gray-500);
+  color: var(--text-muted);
 }
 
 .no-review-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
-  color: var(--gray-400);
+  color: var(--text-muted);
 }
 
 .no-review h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--gray-700);
+  color: var(--text-secondary);
 }
 
 .no-review p {
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--text-muted);
 }
 
 /* Acciones adicionales */
@@ -464,7 +464,7 @@
 .action-group h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-secondary);
   margin-bottom: 1rem;
 }
 
@@ -474,7 +474,8 @@
   flex-wrap: wrap;
 }
 
-.action-button {
+.action-favorite,
+.action-wishlist {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -490,8 +491,15 @@
   backdrop-filter: blur(var(--glass-blur));
 }
 
-.action-button:hover {
-  background: var(--gradient-primary);
+.action-favorite:hover {
+  background: var(--gradient-pink);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.action-wishlist:hover {
+  background: var(--gradient-blue);
   border-color: transparent;
   color: #fff;
   transform: translateY(-1px);

@@ -152,7 +152,7 @@
   --navbar-border: rgba(255, 255, 255, 0.1);
 
   /* Colores de estado */
-  --info:  var(--accent-500);
+  --info:  var(--blue-500);
 
   /* Sombras */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

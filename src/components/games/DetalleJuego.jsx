@@ -432,12 +432,12 @@ const DetalleJuego = () => {
         <div className="action-group">
           <h3>Acciones</h3>
           <div className="action-buttons">
-            <button className="action-button" onClick={handleToggleFavorito}
+            <button className="action-favorite" onClick={handleToggleFavorito}
             title={isFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos'}>
               <FaHeart />
               <span>{isFavorito ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}</span>
             </button>
-            <button className="action-button" onClick={handleToggleWishlist}
+            <button className="action-wishlist" onClick={handleToggleWishlist}
             title={isWishlist ? 'Quitar de wishlist' : 'Agregar a wishlist'}>
               <FaBookmark />
               <span>{isWishlist ? 'Quitar de Wishlist' : 'Agregar a Wishlist'}</span>

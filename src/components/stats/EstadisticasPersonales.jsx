@@ -284,7 +284,7 @@ const EstadisticasPersonales = () => {
           </div>
         </div>
 
-        <div className="stat-card success">
+        <div className="stat-card warning">
           <div className="stat-icon">
             <FaTrophy />
           </div>

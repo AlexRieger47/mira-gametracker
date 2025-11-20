@@ -1,0 +1,319 @@
+/* FormularioReseña.css – estilo profesional, limpio y gamer-friendly */
+
+/* Contenedor principal */
+.formulario-reseña {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  min-height: calc(100vh - 140px);
+  position: relative;
+}
+
+/* Glow decorativo muy sutil */
+.formulario-reseña::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(520px 240px at 12% 6%, color-mix(in oklab, var(--miraki-1) 24%, transparent), transparent 60%),
+    radial-gradient(520px 240px at 88% 96%, color-mix(in oklab, var(--miraki-3) 24%, transparent), transparent 60%);
+  filter: blur(2px);
+  opacity: 0.45;
+}
+
+/* Card del formulario */
+.form-container {
+  background: var(--glass-gradient);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.form-header {
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--miraki-1) 70%, transparent),
+    color-mix(in oklab, var(--miraki-2) 70%, transparent)
+  );
+  color: #fff;
+  padding: var(--spacing-xl);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.header-icon {
+  font-size: 2rem;
+  opacity: 0.9;
+  color: var(--primary-700);
+}
+
+.form-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--gray-100);
+}
+
+.form-header p {
+  font-size: var(--font-size-base);
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Formulario */
+.review-form {
+  padding: var(--spacing-xl);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Labels */
+label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.label-icon {
+  color: var(--miraki-1);
+  font-size: var(--font-size-base);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  background: var(--glass-gradient);
+  color: var(--text-primary);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px var(--ring-soft);
+}
+
+input.error,
+select.error,
+textarea.error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Información del juego seleccionado */
+.selected-game-info {
+  margin-top: 0.5rem;
+}
+
+.game-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--spacing-md);
+  align-items: center;
+  background: var(--glass-gradient);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.game-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow-sm);
+}
+
+.game-details h3 {
+  margin: 0 0 0.25rem 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.game-details p {
+  margin: 0.125rem 0;
+  color: var(--text-secondary);
+}
+
+/* Puntuación */
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.stars-container {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background: var(--glass-gradient);
+  border: 1px solid var(--glass-border);
+  color: var(--gray-400);
+}
+
+.star-btn.active {
+  color: var(--yellow-500);
+  border-color: color-mix(in oklab, var(--yellow-500) 40%, var(--glass-border) 60%);
+  background: color-mix(in oklab, var(--yellow-500) 12%, var(--glass-gradient) 88%);
+}
+
+.rating-labels .rating-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Recomendación */
+.recommendation-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.recommendation-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-gradient);
+  color: var(--text-secondary);
+}
+
+.recommendation-btn.active.positive {
+  background: color-mix(in oklab, var(--success-500) 18%, var(--glass-gradient) 82%);
+  color: #fff;
+  border-color: color-mix(in oklab, var(--success-500) 45%, var(--glass-border) 55%);
+}
+
+.recommendation-btn.active.negative {
+  background: color-mix(in oklab, var(--error-600) 18%, var(--glass-gradient) 82%);
+  color: #fff;
+  border-color: color-mix(in oklab, var(--error-600) 45%, var(--glass-border) 55%);
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.character-count {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Mensajes de error */
+.error-message {
+  color: var(--error);
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 0.875rem;
+}
+
+/* Botones de acción */
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--glass-border);
+}
+
+.btn {
+  min-width: 140px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .formulario-reseña { padding: 1rem; }
+  .form-header { padding: 1.5rem; }
+  .header-content { flex-direction: column; text-align: center; gap: 0.75rem; }
+  .form-header h1 { font-size: 1.5rem; }
+  .review-form { padding: 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .form-group.full-width { grid-column: 1; }
+  .game-card { grid-template-columns: 100px 1fr; }
+  .game-image { width: 100px; height: 100px; }
+  .form-actions { flex-direction: column; }
+  .btn { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .formulario-reseña { padding: 0.5rem; }
+  .form-header { padding: 1rem; }
+  .review-form { padding: 1rem; }
+  .form-grid { gap: 0.75rem; }
+  input, select, textarea { padding: 0.625rem; font-size: 0.875rem; }
+}
+
+/* Animaciones */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+.formulario-reseña { animation: fadeInUp 0.4s ease-out; }

@@ -1,0 +1,277 @@
+/* ========================================
+   MIRABLOG - ESTILO PRINCIPAL
+   Fusión Frutiger Aero/Liquid Glass
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* ========================================
+   1. VARIABLES CSS Y RESET
+   ======================================== */
+:root {
+  /* Colores principales */
+  --primary-orange: #ff8901;
+  --primary-green: #00e147;
+  --primary-blue: #00bfeb;
+  --primary-red: #ff0153;
+
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 50%, var(--primary-orange) 100%);
+  --gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --gradient-delete: linear-gradient(135deg, var(--primary-red) 0%, #C0416A 100%);
+
+  /* Sombras y efectos */
+  --shadow-glow: 0 0 20px rgba(0, 225, 71, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --blur-glass: blur(15px);
+  --border-radius: 10px;
+
+  /* Tamaños de texto */
+  --font-size-base: 1rem;
+  --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+  --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+  --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  font-style: normal;
+  background: var(--gradient-dark);
+  background-attachment: fixed;
+  color: #ffffff;
+  line-height: 1.6;
+  margin: 0;
+}
+
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-green);
+  text-shadow: 0 0 10px rgba(0, 225, 71, 0.5);
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+}
+
+h3 {
+  font-size: var(--font-size-md);
+}
+
+.bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation .2s infinite;
+  opacity: .9;
+  visibility: visible;
+  z-index: -1;
+}
+
+@keyframes bg-animation {
+  0% {
+    transform: translate(0, 0)
+  }
+
+  10% {
+    transform: translate(-5%, -5%)
+  }
+
+  20% {
+    transform: translate(-10%, 5%)
+  }
+
+  30% {
+    transform: translate(5%, -10%)
+  }
+
+  40% {
+    transform: translate(-5%, 15%)
+  }
+
+  50% {
+    transform: translate(-10%, 5%)
+  }
+
+  60% {
+    transform: translate(15%, 0)
+  }
+
+  70% {
+    transform: translate(0, 10%)
+  }
+
+  80% {
+    transform: translate(-15%, 0)
+  }
+
+  90% {
+    transform: translate(10%, 5%)
+  }
+
+  100% {
+    transform: translate(5%, 0)
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  font-family: "Lato", sans-serif;
+  font-size: var(--font-size-base);
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  background-color: var(--gradient-primary);
+  border: none;
+  color: #fff;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  padding: 10px 16px;
+  background-color: var(--gradient-delete);
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.app-background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.tarjeta-contenedor {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: float 6s ease-in-out infinite;
+}
+
+.tarjeta-header {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.nombre {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.titulo {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.tarjeta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 18px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  animation: slideIn 0.5s ease-out backwards;
+}
+
+.info-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icono {
+  font-size: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.item-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.disponibilidad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  animation: fadeIn 0.8s ease-out 0.5s backwards;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 0 3px rgba(74, 222, 128, 0.3),
+    0 0 10px rgba(74, 222, 128, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}

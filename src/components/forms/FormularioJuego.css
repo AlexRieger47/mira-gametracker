@@ -1,0 +1,501 @@
+/* Estilos Formulario Juego – Liquid Glass */
+
+/* Contenedor principal */
+.formulario-juego {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  min-height: calc(100vh - 140px);
+  position: relative;
+}
+
+/* Glow decorativo sutil detrás del card */
+.formulario-juego::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 300px at 10% 5%, color-mix(in oklab, var(--miraki-1) 30%, transparent), transparent 60%),
+    radial-gradient(600px 300px at 90% 100%, color-mix(in oklab, var(--miraki-3) 30%, transparent), transparent 60%);
+  filter: blur(2px);
+  opacity: 0.55;
+}
+
+/* Estado de carga */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  gap: var(--spacing-md);
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #D9DCEF;
+  border-top: 4px solid var(--miraki-1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Contenedor del Formulario */
+.form-container {
+  background: var(--glass-gradient);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.form-header {
+  /* Header tintado sobre glass */
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--miraki-1) 70%, transparent),
+    color-mix(in oklab, var(--miraki-2) 70%, transparent)
+  );
+  color: #fff;
+  padding: var(--spacing-xl);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.header-icon {
+  font-size: 2rem;
+  opacity: 0.9;
+  color: var(--primary-700);
+}
+
+.form-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--gray-100);
+}
+
+.form-header p {
+  font-size: var(--font-size-base);
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Formulario */
+.game-form {
+  padding: var(--spacing-xl);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+select option {
+  background-color: var(--gray-300);
+  border-radius: 0%;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Autocomplete IGDB */
+.igdb-suggestions {
+  position: relative;
+  margin-top: var(--spacing-sm);
+  display: grid;
+  gap: 0.375rem;
+}
+
+.igdb-suggestions .suggestion-item {
+  display: grid;
+  grid-template-columns: auto 60px 1fr;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0.5rem 0.75rem;
+  background: var(--glass-gradient);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-base, #1f2937);
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.igdb-suggestions .suggestion-item:hover {
+  background: color-mix(in oklab, var(--primary-600) 12%, var(--glass-gradient) 88%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glass-sm, var(--shadow-sm));
+  border-color: var(--navbar-border, #D9DCEF)
+}
+
+.suggestion-title {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.suggestion-year {
+  justify-self: end;
+  color: var(--text-muted, #6b7280);
+}
+
+.suggestion-platform {
+  color: var(--text-muted, #6b7280);
+  font-size: var(--font-size-sm);
+  justify-self: start;
+}
+
+/* Ajuste por nombre usado en JSX */
+.suggestion-platforms {
+  color: var(--text-muted, #6b7280);
+  font-size: var(--font-size-sm);
+  justify-self: start;
+}
+
+/* Labels */
+label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.label-icon {
+  color: var(--miraki-1);
+  font-size: var(--font-size-base);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  background: var(--glass-gradient);
+  color: var(--text-primary);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px var(--ring-soft);
+}
+
+input.error,
+select.error,
+textarea.error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Select específico */
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+/* Preview de imagen */
+.image-preview {
+  margin-top: 0.75rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-gradient);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  max-width: 200px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contador de caracteres */
+.character-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+/* Checkbox personalizado */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: var(--spacing-md);
+  background: var(--glass-gradient);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  transition: all var(--transition-fast);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.checkbox-group:hover {
+  background: color-mix(in oklab, var(--miraki-1) 10%, var(--glass-gradient) 90%);
+  border-color: var(--miraki-2);
+}
+
+input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--miraki-1);
+  cursor: pointer;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.checkbox-icon {
+  color: var(--success);
+  font-size: 1.1rem;
+}
+
+/* Mensajes de error */
+.error-message {
+  color: var(--error);
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 0.875rem;
+}
+
+/* Botones de acción */
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--glass-border);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-700);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: var(--glass-gradient);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primary-600) 12%, var(--glass-gradient) 88%);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Spinner del botón */
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Diseño Responsive */
+@media (max-width: 768px) {
+  .formulario-juego {
+    padding: 1rem;
+  }
+
+  .form-header {
+    padding: 1.5rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .form-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .game-form {
+    padding: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-group.full-width {
+    grid-column: 1;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-juego {
+    padding: 0.5rem;
+  }
+
+  .form-header {
+    padding: 1rem;
+  }
+
+  .form-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .game-form {
+    padding: 1rem;
+  }
+
+  .form-grid {
+    gap: 0.75rem;
+  }
+
+  input[type="text"],
+  input[type="url"],
+  input[type="number"],
+  select,
+  textarea {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Animaciones */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estados de hover mejorados */
+.form-container:hover {
+  box-shadow: var(--glass-shadow-md);
+  transition: box-shadow var(--transition-fast);
+}
+
+/* Efectos de focus mejorados */
+.form-group:focus-within label {
+  color: var(--miraki-1);
+}
+
+.form-group:focus-within .label-icon {
+  color: var(--miraki-1);
+  transform: scale(1.1);
+}
+
+/* Validación visual */
+input:valid:not(:placeholder-shown),
+select:valid,
+textarea:valid:not(:placeholder-shown) {
+  border-color: var(--success);
+}
+
+input:invalid:not(:placeholder-shown),
+select:invalid,
+textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--yellow-500);
+}

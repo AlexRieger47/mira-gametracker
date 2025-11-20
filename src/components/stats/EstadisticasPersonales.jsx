@@ -324,7 +324,7 @@ const EstadisticasPersonales = () => {
           </div>
         </div>
 
-        <div className="stat-card secondary">
+        <div className="stat-card success">
           <div className="stat-icon">
             <FaCheckSquare />
           </div>
@@ -344,7 +344,7 @@ const EstadisticasPersonales = () => {
           </div>
         </div>
 
-        <div className="stat-card secondary">
+        <div className="stat-card accent">
           <div className="stat-icon">
             <FaBookmark />
           </div>

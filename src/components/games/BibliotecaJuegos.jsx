@@ -37,6 +37,8 @@ const BibliotecaJuegos = () => {
   const [sortOrder, setSortOrder] = useState('desc')
   const [viewMode, setViewMode] = useState('grid')
   const [showFilters, setShowFilters] = useState(false)
+  const [onlyFavorites, setOnlyFavorites] = useState(false)
+  const [onlyWishlist, setOnlyWishlist] = useState(false)
 
   // Cargar juegos al montar el componente
   useEffect(() => {

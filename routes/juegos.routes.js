@@ -198,6 +198,8 @@ router.get('/estadisticas/resumen', async (req, res) => {
     const totalJuegos = await Juego.countDocuments();
     const juegosCompletados = await Juego.countDocuments({ completado: true });
     const juegosPendientes = totalJuegos - juegosCompletados;
+    const juegosFavoritos = await Juego.countDocuments({ favorito: true });
+    const juegosWishlist = await Juego.countDocuments({ enWishlist: true });
 
     const juegosPorGenero = await Juego.aggregate([
       {$group: {_id: '$genero', cantidad: {$sum: 1}}},
@@ -216,17 +218,19 @@ router.get('/estadisticas/resumen', async (req, res) => {
         juegosCompletados,
         juegosPendientes,
         porcentajeCompletado: totalJuegos > 0 ? Math.round((juegosCompletados / totalJuegos) * 100) : 0,
+        juegosFavoritos,
+        juegosWishlist,
         distribucionGeneros: juegosPorGenero,
         distribucionPlataformas: juegosPorPlataforma
       }
   });
-} catch (error) {
-  res.status(500).json({
-    success: false,
-    message: 'Error al obtener las estadísticas',
-    error: error.message,
-  });
-}
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener las estadísticas',
+      error: error.message,
+    });
+  }
 });
 
 module.exports = router;

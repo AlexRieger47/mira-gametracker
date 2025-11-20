@@ -13,7 +13,9 @@ import {
   FaSortAmountDown,
   FaSortAmountUp,
   FaCheckCircle,
-  FaClock
+  FaClock,
+  FaHeart,
+  FaBookmark
 } from 'react-icons/fa'
 import { FaFaceFrown } from 'react-icons/fa6'
 import './BibliotecaJuegos.css'
@@ -59,9 +61,12 @@ const BibliotecaJuegos = () => {
         (game.desarrollador || '').toLowerCase().includes(searchTerm.toLowerCase())
       const matchesGenre = !selectedGenre || game.genero === selectedGenre
       const matchesPlatform = !selectedPlatform || game.plataforma === selectedPlatform
-      const matchesStatus = !selectedStatus || (selectedStatus === 'completado' && game.completado) ||
+      const matchesStatus = !selectedStatus ||
+        (selectedStatus === 'completado' && game.completado) ||
         (selectedStatus === 'pendiente' && !game.completado)
-      return matchesSearch && matchesGenre && matchesPlatform && matchesStatus
+      const matchesFavorites = !onlyFavorites || !!game.favorito
+      const matchesWishlist = !onlyWishlist || !!game.enWishlist
+      return matchesSearch && matchesGenre && matchesPlatform && matchesStatus && matchesFavorites && matchesWishlist
     })
     .sort((a, b) => {
       let aValue, bValue
@@ -100,6 +105,8 @@ const BibliotecaJuegos = () => {
   const totalGames = juegosList.length
   const completedGames = juegosList.filter(game => game.completado).length
   const pendingGames = totalGames - completedGames
+  const favoritesCount = juegosList.filter(game => game.favorito).length
+  const wishlistCount = juegosList.filter(game => game.enWishlist).length
 
   if (loading) {
     return (

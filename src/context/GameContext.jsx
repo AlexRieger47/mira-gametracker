@@ -310,6 +310,52 @@ export const GameProvider = ({ children }) => {
     cargarReseñas()
   }, [])
 
+  // Toggle: Completado
+  const toggleGameCompletion = async (id) => {
+    try {
+      const current = state.juegos.find(juego => juego._id === id)
+      const next = !current?.completado
+      const response = await gameService.updateJuego(id, { completado: next })
+      const updated = response.data?.data || response.data
+      dispatch({ type: actionTypes.UPDATE_JUEGO, payload: updated })
+      return updated
+    } catch (error) {
+      toast.error('Error al actualizar el estado del juego')
+      throw error
+    }
+  }
+
+  // Toggle: Favorito
+  const toggleFavorito = async (id) => {
+    try {
+      const current = state.juegos.find(juego => juego._id === id)
+      const next = !current?.favorito
+      const response = await gameService.updateJuego(id, { favorito: next })
+      const updated = response.data?.data || response.data
+      dispatch({ type: actionTypes.UPDATE_JUEGO, payload: updated })
+      return updated
+    } catch (error) {
+      toast.error('Error al actualizar favoritos')
+      throw error
+    }
+  }
+
+  // Toggle: Wishlist
+  const toggleWishlist = async (id) => {
+    try {
+      const current = state.juegos.find(juego => juego._id === id)
+      const next = !current?.enWishlist
+      const response = await gameService.updateJuego(id, { enWishlist: next })
+      const updated = response.data?.data || response.data
+      dispatch({ type: actionTypes.UPDATE_JUEGO, payload: updated })
+      toast.success(next ? 'Agregado a tu wishlist' : 'Removido de tu wishlist')
+      return updated
+    } catch (error) {
+      toast.error('Error al actualizar la wishlist')
+      throw error
+    }
+  }
+
   const value = {
     ...state,
 
@@ -335,7 +381,12 @@ export const GameProvider = ({ children }) => {
     limpiarFiltros,
 
     // Utilidades
-    limpiarError
+    limpiarError,
+
+    // Acciones de toggle
+    toggleGameCompletion,
+    toggleFavorito,
+    toggleWishlist
   }
 
   return (

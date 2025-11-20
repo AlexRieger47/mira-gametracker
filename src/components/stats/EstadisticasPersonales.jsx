@@ -6,13 +6,14 @@ import {
   FaStar,
   FaClock,
   FaTrophy,
-  FaCalendarAlt,
+  FaCheckSquare,
   FaThumbsUp,
   FaExclamationTriangle,
   FaDesktop,
   FaUsers,
   FaFire,
-  FaHeart
+  FaHeart,
+  FaBookmark
 } from 'react-icons/fa'
 import './EstadisticasPersonales.css'
 
@@ -65,16 +66,20 @@ const EstadisticasPersonales = () => {
       ? filteredReviews.reduce((sum, reseña) => sum + reseña.puntuacion, 0) / filteredReviews.length
       : 0
     const recommendedGames = filteredReviews.filter(reseña => reseña.recomendaria)
+    const favorites = filteredGames.filter(juego => juego.favorito)
+    const wishlist = filteredGames.filter(juego => juego.enWishlist)
 
     return {
       totalGames: filteredGames.length,
       completedGames: completedGames.length,
       pendingGames: filteredGames.length - completedGames.length,
       totalReviews: filteredReviews.length,
-      totalHours: totalHours,
-      avgRating: avgRating,
+      totalHours,
+      avgRating,
       recommendedGames: recommendedGames.length,
-      completionRate: filteredGames.length > 0 ? (completedGames.length / filteredGames.length) * 100 : 0
+      completionRate: filteredGames.length > 0 ? (completedGames.length / filteredGames.length) * 100 : 0,
+      favoritesCount: favorites.length,
+      wishlistCount: wishlist.length,
     }
   }
 
@@ -321,11 +326,31 @@ const EstadisticasPersonales = () => {
 
         <div className="stat-card secondary">
           <div className="stat-icon">
-            <FaHeart />
+            <FaCheckSquare />
           </div>
           <div className="stat-content">
             <div className="stat-number">{generalStats.completionRate.toFixed(1)}%</div>
             <div className="stat-label">Tasa de Finalización</div>
+          </div>
+        </div>
+
+        <div className="stat-card secondary">
+          <div className="stat-icon">
+            <FaHeart />
+          </div>
+          <div className="stat-content">
+            <div className="stat-number">{generalStats.favoritesCount}</div>
+            <div className="stat-label">Juegos Favoritos</div>
+          </div>
+        </div>
+
+        <div className="stat-card secondary">
+          <div className="stat-icon">
+            <FaBookmark />
+          </div>
+          <div className="stat-content">
+            <div className="stat-number">{generalStats.wishlistCount}</div>
+            <div className="stat-label">En Wishlist</div>
           </div>
         </div>
       </div>

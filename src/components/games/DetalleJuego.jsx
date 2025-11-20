@@ -19,7 +19,7 @@ import {
   FaCircle,
   FaTimes,
   FaHeart,
-  FaShare
+  FaBookmark
 } from 'react-icons/fa'
 import { toast } from 'react-hot-toast'
 import './DetalleJuego.css'
@@ -34,6 +34,8 @@ const DetalleJuego = () => {
     obtenerJuego,
     eliminarJuego,
     toggleGameCompletion,
+    toggleFavorito,
+    toggleWishlist,
     cargarReseñas,
     eliminarReseña,
     loading
@@ -126,6 +128,32 @@ const DetalleJuego = () => {
       toast.error('Error al actualizar el estado del juego')
     }
   }
+
+  const handleToggleFavorito = async () => {
+    try {
+      const updated = await toggleFavorito(id)
+      setGame(updated)
+      toast.success(updated.favorito ? 'Agregado a favoritos' : 'Quitado de favoritos')
+    } catch {
+      toast.error('No se pudo actualizar favoritos')
+    }
+  }
+
+  const handleToggleWishlist = async () => {
+    try {
+      setGame(prev => ({ ...prev, enWishlist: !prev?.enWishlist }))
+      const updated = await toggleWishlist(id)
+      setGame(updated)
+    } catch {
+      toast.error('No se pudo actualizar la wishlist')
+    }
+  }
+
+  // Derivar estados actuales desde el contexto (con fallback al estado local)
+  const isFavorito =
+    juegos.find(juego => juego._id === id)?.favorito ?? game?.favorito ?? false
+  const isWishlist =
+    juegos.find(juego => juego._id === id)?.enWishlist ?? game?.enWishlist ?? false
 
   // Renderizar estrellas
   const renderStars = (rating) => {
@@ -404,13 +432,15 @@ const DetalleJuego = () => {
         <div className="action-group">
           <h3>Acciones</h3>
           <div className="action-buttons">
-            <button className="action-button">
+            <button className="action-button" onClick={handleToggleFavorito}
+            title={isFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos'}>
               <FaHeart />
-              <span>Agregar a Favoritos</span>
+              <span>{isFavorito ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}</span>
             </button>
-            <button className="action-button">
-              <FaShare />
-              <span>Compartir</span>
+            <button className="action-button" onClick={handleToggleWishlist}
+            title={isWishlist ? 'Quitar de wishlist' : 'Agregar a wishlist'}>
+              <FaBookmark />
+              <span>{isWishlist ? 'Quitar de Wishlist' : 'Agregar a Wishlist'}</span>
             </button>
           </div>
         </div>
